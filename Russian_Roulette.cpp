@@ -32,13 +32,12 @@ int main() {
     cin >> name;
 
     // Ciclo principale del gioco
-    while (Vita > 0 && VitaD > 0 && (ProiettiliVeri + ProiettiliBlank) > 0 && ProiettiliBlank > 0) {
+    while (Vita > 0 && VitaD > 0 && ProiettiliVeri > 0) {
         cout << "Hi " << name << ", welcome to the Russian Roulette" << endl << endl;
         cout << "This is the first round, there is " << ProiettiliVeri << " real bullet(s) and " << ProiettiliBlank << " blank(s)" << endl << endl;
 
         // Probabilità del 50% per il proiettile vero e 50% per il proiettile blank
         int randomNum = rand() % 2;  // Genera un numero casuale tra 0 e 1
-
         // Moltiplica per il totale dei proiettili per ottenere un numero compreso tra 0 e il totale effettivo dei proiettili
         randomNum *= (ProiettiliVeri + ProiettiliBlank);
 
@@ -79,7 +78,6 @@ int main() {
             } else if (shoot1 == 'D') {
                 // Ora gestiamo la probabilità per il dealer
                 int randomNumDealer = rand() % 2;  // Genera un numero casuale tra 0 e 1
-
                 // Moltiplica per il totale dei proiettili per ottenere un numero compreso tra 0 e il totale effettivo dei proiettili
                 randomNumDealer *= (ProiettiliVeri + ProiettiliBlank);
 
@@ -106,8 +104,8 @@ int main() {
     // Verifica chi ha vinto
     if (Vita > 0) {
         cout << "Congratulations! You won!" << endl;
-    } else if (ProiettiliBlank == 0) {
-        cout << "Game over! You won! (Dealer ran out of blanks)" << endl;
+    } else if (ProiettiliVeri == 0) {
+        cout << "Game over! You won! (No more real bullets)" << endl;
     } else {
         cout << "Game over! The dealer won!" << endl;
     }
