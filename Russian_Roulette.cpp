@@ -42,7 +42,7 @@ int main() {
         // Moltiplica per il totale dei proiettili per ottenere un numero compreso tra 0 e il totale effettivo dei proiettili
         randomNum *= (ProiettiliVeri + ProiettiliBlank);
 
-        cout << "it's your turn, press 'Y' to shoot at yourself and 'D' to shoot at the dealer" << endl << endl;
+        cout << "It's your turn, press 'Y' to shoot at yourself and 'D' to shoot at the dealer" << endl << endl;
         char shoot1;
         cin >> shoot1;
 
@@ -53,10 +53,19 @@ int main() {
                 Vita--;
                 ProiettiliVeri--;  // Un proiettile vero è stato sparato
             } else {
-                cout << "Click! The gun is blank. You're lucky!" << endl << endl;
-                // Rimetti il proiettile blank nel caricatore e riduci il numero di proiettili blank
+                cout << "Click! The gun is blank.";
                 if (ProiettiliBlank > 0) {
                     ProiettiliBlank--;
+                    // Verifica se il dealer può sparare in risposta
+                    int dealerShoot = rand() % 2;
+                    if (dealerShoot < ProiettiliVeri) {
+                        cout << " Dealer shot back! You lost a life!" << endl << endl;
+                        Vita--;
+                    } else {
+                        cout << " Dealer's shot is blank. You're lucky!" << endl << endl;
+                    }
+                } else {
+                    cout << " You're safe!" << endl << endl;
                 }
             }
         } else {
